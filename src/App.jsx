@@ -1,7 +1,15 @@
+import HeroSection from "./sections/HeroSection"
+import ProblemSection from "./sections/ProblemSection"
+import ContentSection from "./sections/ContentSection"
+import OfferSection from "./sections/OfferSection"
+
 export default function App() {
   return (
-    <div style={{ background: "#050008", color: "white", minHeight: "100vh", padding: "40px" }}>
-      <h1>Mariano Zyzz funcionando 🚀</h1>
-    </div>
+    <main>
+      <HeroSection />
+      <ProblemSection />
+      <ContentSection />
+      <OfferSection />
+    </main>
   )
 }
