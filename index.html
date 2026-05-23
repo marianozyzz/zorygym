@@ -1,158 +1,104 @@
-<!-- ========================= -->
-<!-- ZORY - TEMPLATE BASE -->
-<!-- ========================= -->
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ZORY</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ZORY | Suplementos e Fitness</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-  <!-- HEADER -->
-
-  <header class="header">
-
-    <div class="logo">
-      ZORY
+  <header class="top-header">
+    <div class="logo-area">
+      <img src="assets/logo-black.png" alt="ZORY" />
     </div>
 
-    <nav class="menu">
-      <a href="#">SUPLEMENTOS</a>
-      <a href="#">ROUPAS</a>
-      <a href="#">EQUIPAMENTOS</a>
-      <a href="#">OFERTAS</a>
-    </nav>
-
-    <div class="header-icons">
-      🔍
-      🛒
+    <div class="search-box">
+      <input type="text" placeholder="BUSQUE POR WHEY, CREATINA, PRÉ-TREINO..." />
+      <button>BUSCAR</button>
     </div>
 
+    <div class="header-actions">
+      <span>ENTRAR</span>
+      <span>CARRINHO</span>
+    </div>
   </header>
 
-  <!-- HERO -->
+  <nav class="nav-menu">
+    <a href="#">SUPLEMENTOS</a>
+    <a href="#">ROUPAS FITNESS</a>
+    <a href="#">ACESSÓRIOS</a>
+    <a href="#">EQUIPAMENTOS</a>
+    <a href="#">OFERTAS</a>
+  </nav>
 
   <section class="hero">
-
-    <div class="hero-overlay"></div>
-
-    <div class="hero-content">
-
-      <h1>
-        TREINE NO <span>LIMITE</span>
-      </h1>
-
-      <p>
-        PERFORMANCE • FORÇA • EVOLUÇÃO
-      </p>
-
-      <button>
-        COMPRAR AGORA
-      </button>
-
+    <div class="hero-text">
+      <span class="tag">ZORY PERFORMANCE</span>
+      <h1>QUALIDADE MÁXIMA<br><strong>PARA RESULTADOS REAIS</strong></h1>
+      <p>SUPLEMENTOS • FITNESS • PERFORMANCE • EVOLUÇÃO</p>
+      <a href="#produtos" class="hero-btn">VER PRODUTOS</a>
     </div>
-
   </section>
 
-  <!-- CARROSSEL -->
+  <main id="produtos">
 
-  <section class="products-section">
+    <section class="category-strip">
+      <div>WHEY</div>
+      <div>CREATINA</div>
+      <div>PRÉ-TREINO</div>
+      <div>CAMISETAS</div>
+      <div>COQUETELEIRAS</div>
+      <div>ACESSÓRIOS</div>
+    </section>
 
-    <div class="section-title">
-      MAIS VENDIDOS
-    </div>
-
-    <div class="products-carousel">
-
-      <!-- CARD -->
-
-      <div class="product-card">
-
-        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop" />
-
-        <div class="product-info">
-
-          <h3>WHEY PROTEIN</h3>
-
-          <span class="old-price">
-            R$ 249,90
-          </span>
-
-          <span class="price">
-            R$ 199,90
-          </span>
-
-          <button>
-            COMPRAR
-          </button>
-
-        </div>
-
+    <section class="product-section">
+      <div class="section-head">
+        <h2>MAIS VENDIDOS</h2>
+        <a href="#">VER TODOS</a>
       </div>
+      <div class="carousel" id="maisVendidos"></div>
+    </section>
 
-      <!-- CARD -->
-
-      <div class="product-card">
-
-        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop" />
-
-        <div class="product-info">
-
-          <h3>PRÉ TREINO</h3>
-
-          <span class="old-price">
-            R$ 179,90
-          </span>
-
-          <span class="price">
-            R$ 139,90
-          </span>
-
-          <button>
-            COMPRAR
-          </button>
-
-        </div>
-
+    <section class="promo-banner">
+      <div>
+        <h2>OFERTAS DE ALTA PERFORMANCE</h2>
+        <p>Produtos selecionados para quem leva treino a sério.</p>
       </div>
+      <button>GARANTIR OFERTAS</button>
+    </section>
 
-      <!-- CARD -->
-
-      <div class="product-card">
-
-        <img src="https://images.unsplash.com/photo-1518611012118-fb4c3d6d4b72?q=80&w=1200&auto=format&fit=crop" />
-
-        <div class="product-info">
-
-          <h3>LUVA FITNESS</h3>
-
-          <span class="old-price">
-            R$ 89,90
-          </span>
-
-          <span class="price">
-            R$ 59,90
-          </span>
-
-          <button>
-            COMPRAR
-          </button>
-
-        </div>
-
+    <section class="product-section">
+      <div class="section-head">
+        <h2>SUPLEMENTOS</h2>
+        <a href="#">VER TODOS</a>
       </div>
+      <div class="carousel" id="suplementos"></div>
+    </section>
 
-    </div>
+    <section class="product-section">
+      <div class="section-head">
+        <h2>ROUPAS FITNESS</h2>
+        <a href="#">VER TODOS</a>
+      </div>
+      <div class="carousel" id="roupas"></div>
+    </section>
 
-  </section>
+    <section class="product-section">
+      <div class="section-head">
+        <h2>ACESSÓRIOS E EQUIPAMENTOS</h2>
+        <a href="#">VER TODOS</a>
+      </div>
+      <div class="carousel" id="acessorios"></div>
+    </section>
 
-  <script src="javascript/script.js"></script>
+  </main>
 
+  <footer>
+    <img src="assets/logo-white.png" alt="ZORY" />
+    <p>ZORY © 2026 — PERFORMANCE, QUALIDADE E RESULTADOS.</p>
+  </footer>
+
+  <script src="java script/script.js"></script>
 </body>
 </html>
