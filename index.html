@@ -1,104 +1,161 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZORY | Suplementos e Fitness</title>
+
+  <title>ZORY</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="css/style.css" />
 </head>
+
 <body>
 
-  <header class="top-header">
-    <div class="logo-area">
-      <img src="assets/logo-black.png" alt="ZORY" />
+  <!-- HEADER -->
+
+  <header class="header">
+
+    <div class="logo">
+      <img src="assets/logo-white.png" alt="ZORY">
     </div>
 
     <div class="search-box">
-      <input type="text" placeholder="BUSQUE POR WHEY, CREATINA, PRÉ-TREINO..." />
+      <input type="text" placeholder="BUSCAR SUPLEMENTOS..." />
       <button>BUSCAR</button>
     </div>
 
     <div class="header-actions">
-      <span>ENTRAR</span>
+      <span>LOGIN</span>
       <span>CARRINHO</span>
     </div>
+
   </header>
 
-  <nav class="nav-menu">
+  <!-- MENU -->
+
+  <nav class="menu">
+
     <a href="#">SUPLEMENTOS</a>
-    <a href="#">ROUPAS FITNESS</a>
+    <a href="#">PRÉ-TREINOS</a>
+    <a href="#">CREATINA</a>
+    <a href="#">ROUPAS</a>
     <a href="#">ACESSÓRIOS</a>
-    <a href="#">EQUIPAMENTOS</a>
     <a href="#">OFERTAS</a>
+
   </nav>
 
+  <!-- HERO -->
+
   <section class="hero">
-    <div class="hero-text">
-      <span class="tag">ZORY PERFORMANCE</span>
-      <h1>QUALIDADE MÁXIMA<br><strong>PARA RESULTADOS REAIS</strong></h1>
-      <p>SUPLEMENTOS • FITNESS • PERFORMANCE • EVOLUÇÃO</p>
-      <a href="#produtos" class="hero-btn">VER PRODUTOS</a>
+
+    <div class="overlay"></div>
+
+    <div class="hero-content">
+
+      <span class="hero-tag">
+        ZORY PERFORMANCE
+      </span>
+
+      <h1>
+        QUALIDADE MÁXIMA
+        <span>PARA RESULTADOS REAIS</span>
+      </h1>
+
+      <p>
+        PERFORMANCE • FORÇA • EVOLUÇÃO
+      </p>
+
+      <button>
+        VER PRODUTOS
+      </button>
+
     </div>
+
   </section>
 
-  <main id="produtos">
+  <!-- CATEGORIAS -->
 
-    <section class="category-strip">
-      <div>WHEY</div>
-      <div>CREATINA</div>
-      <div>PRÉ-TREINO</div>
-      <div>CAMISETAS</div>
-      <div>COQUETELEIRAS</div>
-      <div>ACESSÓRIOS</div>
-    </section>
+  <section class="categories">
 
-    <section class="product-section">
-      <div class="section-head">
-        <h2>MAIS VENDIDOS</h2>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="maisVendidos"></div>
-    </section>
+    <div class="category-card">
+      WHEY
+    </div>
 
-    <section class="promo-banner">
-      <div>
-        <h2>OFERTAS DE ALTA PERFORMANCE</h2>
-        <p>Produtos selecionados para quem leva treino a sério.</p>
-      </div>
-      <button>GARANTIR OFERTAS</button>
-    </section>
+    <div class="category-card">
+      CREATINA
+    </div>
 
-    <section class="product-section">
-      <div class="section-head">
-        <h2>SUPLEMENTOS</h2>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="suplementos"></div>
-    </section>
+    <div class="category-card">
+      PRÉ-TREINO
+    </div>
 
-    <section class="product-section">
-      <div class="section-head">
-        <h2>ROUPAS FITNESS</h2>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="roupas"></div>
-    </section>
+    <div class="category-card">
+      CAMISETAS
+    </div>
 
-    <section class="product-section">
-      <div class="section-head">
-        <h2>ACESSÓRIOS E EQUIPAMENTOS</h2>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="acessorios"></div>
-    </section>
+    <div class="category-card">
+      ACESSÓRIOS
+    </div>
 
-  </main>
+    <div class="category-card">
+      EQUIPAMENTOS
+    </div>
+
+  </section>
+
+  <!-- PRODUTOS -->
+
+  <section class="products-section">
+
+    <div class="section-title">
+      MAIS VENDIDOS
+    </div>
+
+    <div class="products-carousel" id="carousel">
+
+    </div>
+
+  </section>
+
+  <!-- BANNER -->
+
+  <section class="promo-banner">
+
+    <div class="promo-content">
+
+      <h2>
+        EVOLUÇÃO COMEÇA AQUI
+      </h2>
+
+      <p>
+        SUPLEMENTOS PREMIUM PARA QUEM LEVA TREINO A SÉRIO
+      </p>
+
+      <button>
+        COMPRAR AGORA
+      </button>
+
+    </div>
+
+  </section>
+
+  <!-- FOOTER -->
 
   <footer>
-    <img src="assets/logo-white.png" alt="ZORY" />
-    <p>ZORY © 2026 — PERFORMANCE, QUALIDADE E RESULTADOS.</p>
+
+    <img src="assets/logo-white.png" alt="ZORY">
+
+    <p>
+      ZORY © 2026 • TODOS OS DIREITOS RESERVADOS
+    </p>
+
   </footer>
 
+  <!-- SCRIPT -->
   <script src="java script/script.js"></script>
+
 </body>
+
 </html>
