@@ -3,272 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ZORY | Suplementos, Fitness e Performance</title>
+  <title>Zory | Performance Store</title>
   <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
-
-  <div class="top-alert">
-    FRETE GRÁTIS ACIMA DE R$199 • OFERTAS EXCLUSIVAS ZORY • PERFORMANCE DE VERDADE
-  </div>
-
-  <header class="main-header">
-    <div class="brand">
-      <img src="Prancheta 4.png" alt="ZORY" />
-    </div>
-
-    <div class="search-area">
-      <input type="text" placeholder="BUSQUE POR WHEY, CREATINA, PRÉ-TREINO, ROUPAS..." />
-      <button>BUSCAR</button>
-    </div>
-
-    <div class="header-actions">
-      <a href="#">ENTRAR</a>
-      <a href="#">FAVORITOS</a>
-      <a href="#" class="cart">CARRINHO</a>
-    </div>
+  <header class="topbar">
+    <div class="promo">Frete grátis acima de R$199 • ZORY PERFORMANCE</div>
+    <nav class="navbar glass">
+      <a href="#" class="logo">ZORY</a>
+      <div class="navlinks">
+        <a href="#produtos">Produtos</a>
+        <a href="#categorias">Categorias</a>
+        <a href="#sobre">Marca</a>
+      </div>
+      <button class="cart-btn" onclick="toggleCart()">Carrinho <span id="cartCount">0</span></button>
+    </nav>
   </header>
 
-  <nav class="main-nav">
-    <a href="#mais-vendidos">MAIS VENDIDOS</a>
-    <a href="#suplementos">SUPLEMENTOS</a>
-    <a href="#roupas">ROUPAS FITNESS</a>
-    <a href="#acessorios">ACESSÓRIOS</a>
-    <a href="#kits">KITS</a>
-    <a href="#ofertas">OFERTAS</a>
-  </nav>
-
-  <section class="hero">
-    <div class="hero-content">
-      <span>ZORY PERFORMANCE</span>
-      <h1>QUALIDADE MÁXIMA<br><strong>PARA RESULTADOS REAIS</strong></h1>
-      <p>SUPLEMENTOS • FITNESS • PERFORMANCE • EVOLUÇÃO</p>
-      <div class="hero-buttons">
-        <a href="#mais-vendidos">VER PRODUTOS</a>
-        <a href="#ofertas" class="outline">OFERTAS DO DIA</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="quick-benefits">
-    <div>ENVIO RÁPIDO</div>
-    <div>PRODUTOS PREMIUM</div>
-    <div>COMPRA SEGURA</div>
-    <div>ALTA PERFORMANCE</div>
-  </section>
-
-  <section class="categories">
-    <div>WHEY PROTEIN</div>
-    <div>CREATINA</div>
-    <div>PRÉ-TREINO</div>
-    <div>CAMISETAS</div>
-    <div>COQUETELEIRAS</div>
-    <div>EQUIPAMENTOS</div>
-    <div>VITAMINAS</div>
-    <div>ACESSÓRIOS</div>
-  </section>
-
   <main>
-
-    <section class="product-section" id="mais-vendidos">
-      <div class="section-header">
-        <div>
-          <span>TOP ZORY</span>
-          <h2>MAIS VENDIDOS</h2>
+    <section class="hero">
+      <div class="hero-content">
+        <span class="tag glass">Nova geração fitness</span>
+        <h1>Performance sem desculpas.</h1>
+        <p>Suplementos, roupas e acessórios para quem treina com intensidade e vive estética.</p>
+        <div class="hero-actions">
+          <a href="#produtos" class="btn primary">Comprar agora</a>
+          <a href="#categorias" class="btn secondary">Explorar</a>
         </div>
-        <a href="#">VER TODOS</a>
       </div>
-      <div class="carousel" id="carousel-mais-vendidos"></div>
+      <div class="hero-card glass">
+        <img src="assets/hero-zory.png" alt="Imagem principal Zory" />
+        <div class="floating-card">
+          <strong>ZORY DROP 01</strong>
+          <span>Fitness essentials</span>
+        </div>
+      </div>
     </section>
 
-    <section class="mega-banner banner-red">
+    <section class="section" id="categorias">
+      <div class="section-title">
+        <span>Explore</span>
+        <h2>Categorias Zory</h2>
+      </div>
+      <div class="categories">
+        <div class="category glass">Whey Protein</div>
+        <div class="category glass">Creatina</div>
+        <div class="category glass">Pré-treino</div>
+        <div class="category glass">Roupas Fitness</div>
+      </div>
+    </section>
+
+    <section class="section" id="produtos">
+      <div class="section-title">
+        <span>Mais vendidos</span>
+        <h2>Produtos em destaque</h2>
+      </div>
+      <div class="products" id="productGrid"></div>
+    </section>
+
+    <section class="brand-section glass" id="sobre">
       <div>
-        <span>OFERTA LIMITADA</span>
-        <h2>COMBOS DE PERFORMANCE</h2>
-        <p>Monte sua rotina com whey, creatina, pré-treino e acessórios premium.</p>
-        <a href="#kits">VER KITS</a>
+        <span class="tag">Zory mindset</span>
+        <h2>Mais que produto. Uma identidade.</h2>
       </div>
+      <p>A Zory foi criada para quem transforma treino em estilo de vida: força, estética, disciplina e presença.</p>
     </section>
 
-    <section class="product-section" id="suplementos">
-      <div class="section-header">
-        <div>
-          <span>NUTRIÇÃO ESPORTIVA</span>
-          <h2>SUPLEMENTOS</h2>
-        </div>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="carousel-suplementos"></div>
+    <section class="benefits">
+      <div class="benefit glass">Pagamento seguro</div>
+      <div class="benefit glass">Entrega rápida</div>
+      <div class="benefit glass">Qualidade premium</div>
     </section>
-
-    <section class="split-showcase">
-      <div class="showcase-card dark">
-        <h2>WHEY PROTEIN</h2>
-        <p>Proteína para recuperação, força e evolução muscular.</p>
-        <button>COMPRAR WHEY</button>
-      </div>
-
-      <div class="showcase-card red">
-        <h2>CREATINA</h2>
-        <p>Mais força, potência e desempenho nos treinos intensos.</p>
-        <button>VER CREATINAS</button>
-      </div>
-
-      <div class="showcase-card yellow">
-        <h2>PRÉ-TREINO</h2>
-        <p>Energia máxima para treinar pesado do início ao fim.</p>
-        <button>ATIVAR PERFORMANCE</button>
-      </div>
-    </section>
-
-    <section class="product-section" id="roupas">
-      <div class="section-header">
-        <div>
-          <span>DROP FITNESS</span>
-          <h2>ROUPAS FITNESS</h2>
-        </div>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="carousel-roupas"></div>
-    </section>
-
-    <section class="brand-banner">
-      <div class="brand-banner-text">
-        <span>IDENTIDADE ZORY</span>
-        <h2>ESTILO DE QUEM TREINA DE VERDADE</h2>
-        <p>Peças premium, visual agressivo e conforto para treino ou lifestyle.</p>
-      </div>
-    </section>
-
-    <section class="product-section" id="acessorios">
-      <div class="section-header">
-        <div>
-          <span>TREINO COMPLETO</span>
-          <h2>ACESSÓRIOS E EQUIPAMENTOS</h2>
-        </div>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="carousel-acessorios"></div>
-    </section>
-
-    <section class="product-section" id="kits">
-      <div class="section-header">
-        <div>
-          <span>COMBOS PREMIUM</span>
-          <h2>KITS ZORY</h2>
-        </div>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="carousel-kits"></div>
-    </section>
-
-    <section class="offer-grid" id="ofertas">
-      <div class="offer-main">
-        <span>BLACK ZORY</span>
-        <h2>OFERTAS RELÂMPAGO</h2>
-        <p>Produtos selecionados com desconto por tempo limitado.</p>
-        <a href="#">GARANTIR AGORA</a>
-      </div>
-
-      <div class="offer-small">
-        <h3>CREATINA</h3>
-        <p>Até 30% OFF</p>
-      </div>
-
-      <div class="offer-small">
-        <h3>WHEY</h3>
-        <p>Combos especiais</p>
-      </div>
-    </section>
-
-    <section class="product-section">
-      <div class="section-header">
-        <div>
-          <span>DESCONTOS</span>
-          <h2>OFERTAS DO DIA</h2>
-        </div>
-        <a href="#">VER TODOS</a>
-      </div>
-      <div class="carousel" id="carousel-ofertas"></div>
-    </section>
-
-    <section class="premium-info">
-      <div>
-        <h2>POR QUE ESCOLHER A ZORY?</h2>
-        <p>A ZORY nasceu para entregar uma experiência premium para quem busca evolução real. Produtos com identidade forte, visual impactante e foco total em performance.</p>
-      </div>
-
-      <div class="info-list">
-        <article>
-          <h3>QUALIDADE</h3>
-          <p>Produtos selecionados para rotinas intensas.</p>
-        </article>
-
-        <article>
-          <h3>PERFORMANCE</h3>
-          <p>Suplementos e acessórios para elevar seu treino.</p>
-        </article>
-
-        <article>
-          <h3>ESTILO</h3>
-          <p>Visual forte, moderno e premium.</p>
-        </article>
-
-        <article>
-          <h3>RESULTADO</h3>
-          <p>Foco em evolução, constância e intensidade.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="newsletter">
-      <span>ENTRE PARA O TIME ZORY</span>
-      <h2>RECEBA OFERTAS EXCLUSIVAS</h2>
-      <p>Cadastre seu e-mail e receba novidades, lançamentos e promoções.</p>
-      <form>
-        <input type="email" placeholder="SEU MELHOR E-MAIL" />
-        <button type="submit">CADASTRAR</button>
-      </form>
-    </section>
-
   </main>
 
-  <footer class="footer">
-    <div class="footer-brand">
-      <img src="Prancheta 4.png" alt="ZORY" />
-      <p>SUPLEMENTOS • FITNESS • PERFORMANCE • RESULTADOS REAIS</p>
-    </div>
+  <aside class="cart glass" id="cart">
+    <button class="close" onclick="toggleCart()">×</button>
+    <h3>Seu carrinho</h3>
+    <div id="cartItems"></div>
+    <div class="cart-total">Total: <strong id="cartTotal">R$ 0,00</strong></div>
+    <a class="btn primary full" id="whatsappCheckout" target="_blank">Finalizar no WhatsApp</a>
+  </aside>
 
-    <div class="footer-columns">
-      <div>
-        <h4>LOJA</h4>
-        <a href="#">Suplementos</a>
-        <a href="#">Roupas Fitness</a>
-        <a href="#">Acessórios</a>
-        <a href="#">Ofertas</a>
-      </div>
-
-      <div>
-        <h4>AJUDA</h4>
-        <a href="#">Minha Conta</a>
-        <a href="#">Pedidos</a>
-        <a href="#">Trocas</a>
-        <a href="#">Contato</a>
-      </div>
-
-      <div>
-        <h4>ZORY</h4>
-        <a href="#">Sobre a marca</a>
-        <a href="#">Performance</a>
-        <a href="#">Atletas</a>
-        <a href="#">Parcerias</a>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      ZORY © 2026 — TODOS OS DIREITOS RESERVADOS.
-    </div>
+  <footer>
+    <strong>ZORY</strong>
+    <p>Performance, estética e atitude.</p>
   </footer>
 
   <script src="script.js"></script>
