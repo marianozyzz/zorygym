@@ -35,58 +35,125 @@ const cartTotal = document.getElementById("cartTotal");
 const whatsappCheckout = document.getElementById("whatsappCheckout");
 
 function money(value) {
-  return value.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
+  return value.toLocaleString("pt-BR", {
+    style: "currency",
+    currency: "BRL"
+  });
 }
 
 function renderProducts() {
+
+  if (!grid) return;
+
   grid.innerHTML = products.map((p, index) => `
     <article class="product glass">
+
       <div class="product-img">
         <img src="${p.image}" alt="${p.name}">
       </div>
+
       <h3>${p.name}</h3>
+
       <p>${p.desc}</p>
-      <span class="price">${money(p.price)}</span>
-      <button onclick="addToCart(${index})">Adicionar ao carrinho</button>
+
+      <span class="price">
+        ${money(p.price)}
+      </span>
+
+      <button onclick="addToCart(${index})">
+        Adicionar ao carrinho
+      </button>
+
     </article>
   `).join("");
+
 }
 
 function addToCart(index) {
+
   cart.push(products[index]);
+
   updateCart();
-  cartEl.classList.add("open");
+
+  if (cartEl) {
+    cartEl.classList.add("open");
+  }
+
 }
 
 function toggleCart() {
+
+  if (!cartEl) return;
+
   cartEl.classList.toggle("open");
+
 }
 
 function updateCart() {
-  cartCount.textContent = cart.length;
 
-  if (cart.length === 0) {
-    cartItems.innerHTML = "<p>Seu carrinho está vazio.</p>";
-  } else {
-    cartItems.innerHTML = cart.map(item => `
-      <div class="cart-item">
-        <span>${item.name}</span>
-        <strong>${money(item.price)}</strong>
-      </div>
-    `).join("");
+  if (cartCount) {
+    cartCount.textContent = cart.length;
   }
 
-  const total = cart.reduce((sum, item) => sum + item.price, 0);
-  cartTotal.textContent = money(total);
+  if (cartItems) {
 
-  const message = encodeURIComponent(
-    "Olá! Quero finalizar meu pedido Zory:%0A" +
-    cart.map(item => `- ${item.name} | ${money(item.price)}`).join("%0A") +
-    `%0A%0ATotal: ${money(total)}`
+    if (cart.length === 0) {
+
+      cartItems.innerHTML = `
+        <p>Seu carrinho está vazio.</p>
+      `;
+
+    } else {
+
+      cartItems.innerHTML = cart.map(item => `
+
+        <div class="cart-item">
+
+          <span>${item.name}</span>
+
+          <strong>${money(item.price)}</strong>
+
+        </div>
+
+      `).join("");
+
+    }
+
+  }
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price,
+    0
   );
 
-  whatsappCheckout.href = `https://wa.me/5521990073735?text=${message}`;
+  if (cartTotal) {
+    cartTotal.textContent = money(total);
+  }
+
+  if (whatsappCheckout) {
+
+    const message = encodeURIComponent(
+
+      "Olá! Quero finalizar meu pedido Zory:\n\n" +
+
+      cart.map(item =>
+        `• ${item.name} - ${money(item.price)}`
+      ).join("\n") +
+
+      `\n\nTotal: ${money(total)}`
+
+    );
+
+    whatsappCheckout.href =
+      `https://wa.me/5521990073735?text=${message}`;
+  }
+
 }
 
-renderProducts();
-updateCart();
+document.addEventListener("DOMContentLoaded", () => {
+
+  renderProducts();
+
+  updateCart();
+
+});
