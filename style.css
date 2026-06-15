@@ -6,8 +6,8 @@
   --line: rgba(255,255,255,.14);
   --text: #fff;
   --muted: #a7a7a7;
-  --red: #ff2a1f;
-  --red2: #ff6a00;
+  --red: #ff1e1e;
+  --red2: #b30000;
   --radius: 28px;
 }
 
@@ -64,10 +64,50 @@ img { max-width: 100%; display: block; }
 }
 
 .navlinks {
-  display: flex;
-  gap: 28px;
-  color: var(--muted);
-  font-size: 14px;
+  display:flex;
+  gap:32px;
+  color:var(--muted);
+  font-size:14px;
+  align-items:center;
+}
+
+.navlinks a{
+  transition:.25s;
+}
+
+.navlinks a:hover{
+  color:#fff;
+}
+
+
+.nav-actions{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+
+.account-btn{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.12);
+  color:#ffffff;
+  transition:.25s;
+}
+
+.account-btn:hover{
+  transform:translateY(-2px);
+  background:rgba(255,255,255,.12);
+  border-color:rgba(255,255,255,.2);
+}
+
+.account-btn svg{
+  width:20px;
+  height:20px;
 }
 
 .cart-btn {
@@ -342,7 +382,18 @@ footer {
 footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px; }
 
 @media (max-width: 880px) {
-  .navlinks { display: none; }
+  .navlinks{
+  display:none;
+}
+
+.nav-actions{
+  gap:8px;
+}
+
+.account-btn{
+  width:40px;
+  height:40px;
+}
   .hero { grid-template-columns: 1fr; margin-top: 30px; min-height: auto; }
   .hero h1 { letter-spacing: -3px; }
   .categories, .products, .benefits, .brand-section { grid-template-columns: 1fr; }
