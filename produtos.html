@@ -1,1 +1,257 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Produtos | Zory</title>
 
+<link rel="stylesheet" href="style.css">
+
+<style>
+.products-page{
+    max-width:1200px;
+    margin:140px auto 80px;
+    padding:0 20px;
+}
+
+.products-header{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.products-header h1{
+    font-size:4rem;
+    margin-bottom:15px;
+}
+
+.products-header p{
+    color:#9e9e9e;
+    max-width:700px;
+    margin:auto;
+}
+
+.products-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:25px;
+}
+
+.product-card{
+    background:rgba(255,255,255,.05);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:30px;
+    overflow:hidden;
+    backdrop-filter:blur(15px);
+    transition:.3s;
+}
+
+.product-card:hover{
+    transform:translateY(-8px);
+}
+
+.product-image{
+    width:100%;
+    height:320px;
+    object-fit:cover;
+    background:#111;
+}
+
+.product-content{
+    padding:25px;
+}
+
+.product-category{
+    color:#ff1e1e;
+    font-size:.8rem;
+    text-transform:uppercase;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.product-title{
+    font-size:1.5rem;
+    margin-bottom:10px;
+}
+
+.product-description{
+    color:#9e9e9e;
+    margin-bottom:20px;
+    line-height:1.5;
+}
+
+.product-price{
+    font-size:1.8rem;
+    font-weight:800;
+    margin-bottom:20px;
+}
+
+.product-button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    font-weight:700;
+    color:white;
+    background:linear-gradient(135deg,#ff1e1e,#b30000);
+}
+</style>
+
+</head>
+<body>
+
+<header class="topbar">
+
+<nav class="navbar glass">
+
+<div class="logo">ZORY</div>
+
+<div class="navlinks">
+<a href="index.html">Home</a>
+<a href="produtos.html">Produtos</a>
+<a href="colecoes.html">Coleções</a>
+<a href="blog.html">Blog</a>
+<a href="conta.html">Conta</a>
+</div>
+
+</nav>
+
+</header>
+
+<section class="products-page">
+
+<div class="products-header">
+
+<h1>Produtos Zory</h1>
+
+<p>
+Performance. Estética. Disciplina.
+Conheça a linha premium desenvolvida para elevar seus resultados.
+</p>
+
+</div>
+
+<div class="products-grid">
+
+<div class="product-card">
+
+<img src="assets/produto1.jpg" class="product-image">
+
+<div class="product-content">
+
+<div class="product-category">
+Creatina
+</div>
+
+<h3 class="product-title">
+Zory Monohydrate
+</h3>
+
+<p class="product-description">
+Creatina monohidratada de alta pureza para força, explosão e recuperação muscular.
+</p>
+
+<div class="product-price">
+R$ 89,90
+</div>
+
+<button class="product-button">
+Comprar Agora
+</button>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<img src="assets/produto2.jpg" class="product-image">
+
+<div class="product-content">
+
+<div class="product-category">
+Whey Protein
+</div>
+
+<h3 class="product-title">
+Zory Protein
+</h3>
+
+<p class="product-description">
+Proteína premium para construção muscular e recuperação pós treino.
+</p>
+
+<div class="product-price">
+R$ 149,90
+</div>
+
+<button class="product-button">
+Comprar Agora
+</button>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<img src="assets/produto3.jpg" class="product-image">
+
+<div class="product-content">
+
+<div class="product-category">
+Pré Treino
+</div>
+
+<h3 class="product-title">
+Zory Ignite
+</h3>
+
+<p class="product-description">
+Energia, foco e intensidade para elevar seu desempenho ao próximo nível.
+</p>
+
+<div class="product-price">
+R$ 99,90
+</div>
+
+<button class="product-button">
+Comprar Agora
+</button>
+
+</div>
+</div>
+
+<div class="product-card">
+
+<img src="assets/produto4.jpg" class="product-image">
+
+<div class="product-content">
+
+<div class="product-category">
+Lifestyle
+</div>
+
+<h3 class="product-title">
+Zory Performance Tee
+</h3>
+
+<p class="product-description">
+Camiseta premium desenvolvida para treino e uso diário.
+</p>
+
+<div class="product-price">
+R$ 79,90
+</div>
+
+<button class="product-button">
+Comprar Agora
+</button>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+</body>
+</html>
