@@ -6,89 +6,259 @@
   <title>Zory | Performance Store</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
+
   <header class="topbar">
-    <div class="promo">Frete grátis acima de R$199 • ZORY PERFORMANCE</div>
+
+    <div class="promo">
+      Frete grátis acima de R$199 • ZORY PERFORMANCE
+    </div>
+
     <nav class="navbar glass">
-      <a href="#" class="logo">ZORY</a>
+
+      <a href="index.html" class="logo">
+        ZORY
+      </a>
+
       <div class="navlinks">
-        <a href="#produtos">Produtos</a>
-        <a href="#categorias">Categorias</a>
-        <a href="#sobre">Marca</a>
+
+        <a href="produtos.html">
+          Produtos
+        </a>
+
+        <a href="colecoes.html">
+          Coleções
+        </a>
+
+        <a href="blog.html">
+          Blog
+        </a>
+
       </div>
-      <button class="cart-btn" onclick="toggleCart()">Carrinho <span id="cartCount">0</span></button>
+
+      <div class="nav-actions">
+
+        <a href="conta.html" class="account-btn">
+
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+
+            <path
+              d="M20 21C20 18.2386 16.4183 16 12 16C7.58172 16 4 18.2386 4 21"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+
+            <circle
+              cx="12"
+              cy="8"
+              r="4"
+              stroke="currentColor"
+              stroke-width="2"
+            />
+
+          </svg>
+
+        </a>
+
+        <button class="cart-btn" onclick="toggleCart()">
+          Carrinho <span id="cartCount">0</span>
+        </button>
+
+      </div>
+
     </nav>
+
   </header>
 
   <main>
+
     <section class="hero">
+
       <div class="hero-content">
-        <span class="tag glass">Nova geração fitness</span>
-        <h1>Performance sem desculpas.</h1>
-        <p>Suplementos, roupas e acessórios para quem treina com intensidade e vive estética.</p>
+
+        <span class="tag glass">
+          Nova geração fitness
+        </span>
+
+        <h1>
+          Performance sem desculpas.
+        </h1>
+
+        <p>
+          Suplementos, roupas e acessórios para quem treina com intensidade e vive estética.
+        </p>
+
         <div class="hero-actions">
-          <a href="#produtos" class="btn primary">Comprar agora</a>
-          <a href="#categorias" class="btn secondary">Explorar</a>
+
+          <a href="produtos.html" class="btn primary">
+            Comprar agora
+          </a>
+
+          <a href="colecoes.html" class="btn secondary">
+            Explorar
+          </a>
+
         </div>
+
       </div>
+
       <div class="hero-card glass">
+
         <img src="assets/hero-zory.png" alt="Imagem principal Zory" />
+
         <div class="floating-card">
-          <strong>ZORY DROP 01</strong>
-          <span>Fitness essentials</span>
+
+          <strong>
+            ZORY DROP 01
+          </strong>
+
+          <span>
+            Fitness essentials
+          </span>
+
         </div>
+
       </div>
+
     </section>
 
     <section class="section" id="categorias">
+
       <div class="section-title">
-        <span>Explore</span>
-        <h2>Categorias Zory</h2>
+
+        <span>
+          Explore
+        </span>
+
+        <h2>
+          Categorias Zory
+        </h2>
+
       </div>
+
       <div class="categories">
-        <div class="category glass">Whey Protein</div>
-        <div class="category glass">Creatina</div>
-        <div class="category glass">Pré-treino</div>
-        <div class="category glass">Roupas Fitness</div>
+
+        <div class="category glass">
+          Whey Protein
+        </div>
+
+        <div class="category glass">
+          Creatina
+        </div>
+
+        <div class="category glass">
+          Pré-treino
+        </div>
+
+        <div class="category glass">
+          Roupas Fitness
+        </div>
+
       </div>
+
     </section>
 
     <section class="section" id="produtos">
+
       <div class="section-title">
-        <span>Mais vendidos</span>
-        <h2>Produtos em destaque</h2>
+
+        <span>
+          Mais vendidos
+        </span>
+
+        <h2>
+          Produtos em destaque
+        </h2>
+
       </div>
+
       <div class="products" id="productGrid"></div>
+
     </section>
 
     <section class="brand-section glass" id="sobre">
+
       <div>
-        <span class="tag">Zory mindset</span>
-        <h2>Mais que produto. Uma identidade.</h2>
+
+        <span class="tag">
+          Zory mindset
+        </span>
+
+        <h2>
+          Mais que produto. Uma identidade.
+        </h2>
+
       </div>
-      <p>A Zory foi criada para quem transforma treino em estilo de vida: força, estética, disciplina e presença.</p>
+
+      <p>
+        A Zory foi criada para quem transforma treino em estilo de vida:
+        força, estética, disciplina e presença.
+      </p>
+
     </section>
 
     <section class="benefits">
-      <div class="benefit glass">Pagamento seguro</div>
-      <div class="benefit glass">Entrega rápida</div>
-      <div class="benefit glass">Qualidade premium</div>
+
+      <div class="benefit glass">
+        Pagamento seguro
+      </div>
+
+      <div class="benefit glass">
+        Entrega rápida
+      </div>
+
+      <div class="benefit glass">
+        Qualidade premium
+      </div>
+
     </section>
+
   </main>
 
   <aside class="cart glass" id="cart">
-    <button class="close" onclick="toggleCart()">×</button>
-    <h3>Seu carrinho</h3>
+
+    <button class="close" onclick="toggleCart()">
+      ×
+    </button>
+
+    <h3>
+      Seu carrinho
+    </h3>
+
     <div id="cartItems"></div>
-    <div class="cart-total">Total: <strong id="cartTotal">R$ 0,00</strong></div>
-    <a class="btn primary full" id="whatsappCheckout" target="_blank">Finalizar no WhatsApp</a>
+
+    <div class="cart-total">
+      Total:
+      <strong id="cartTotal">
+        R$ 0,00
+      </strong>
+    </div>
+
+    <a
+      class="btn primary full"
+      id="whatsappCheckout"
+      target="_blank"
+    >
+      Finalizar no WhatsApp
+    </a>
+
   </aside>
 
   <footer>
-    <strong>ZORY</strong>
-    <p>Performance, estética e atitude.</p>
+
+    <strong>
+      ZORY
+    </strong>
+
+    <p>
+      Performance, estética e atitude.
+    </p>
+
   </footer>
 
   <script src="script.js"></script>
+
 </body>
 </html>
