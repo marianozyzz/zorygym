@@ -402,8 +402,8 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
 
 
 /* ==============================
-   HERO WHEY - compatível com index corrigido
-   Mantém texto à esquerda e imagem à direita
+   HERO WHEY V2 - versão mais forte
+   Mantém texto à esquerda e produto à direita
    ============================== */
 
 .hero-card.hero-whey-card {
@@ -415,122 +415,173 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
   align-items: center;
   justify-content: center;
   background:
-    radial-gradient(circle at 70% 20%, rgba(255, 30, 30, .38), transparent 28%),
-    radial-gradient(circle at 25% 80%, rgba(255, 106, 0, .16), transparent 32%),
-    linear-gradient(145deg, rgba(8, 8, 8, .96), rgba(75, 7, 7, .82));
+    radial-gradient(circle at 75% 18%, rgba(255, 30, 30, .55), transparent 28%),
+    radial-gradient(circle at 18% 82%, rgba(255, 106, 0, .22), transparent 34%),
+    linear-gradient(145deg, rgba(6, 6, 6, .98), rgba(35, 0, 0, .96) 55%, rgba(95, 4, 4, .82));
   isolation: isolate;
+  transform-style: preserve-3d;
+  transition: transform .25s ease, box-shadow .25s ease;
 }
 
 .hero-card.hero-whey-card::before {
   content: "";
   position: absolute;
-  inset: -30%;
+  inset: -40%;
   background:
-    linear-gradient(120deg, transparent 30%, rgba(255, 255, 255, .08), transparent 62%);
-  transform: translateX(-35%) rotate(8deg);
-  animation: heroLightSweep 5.8s ease-in-out infinite;
-  z-index: 1;
+    repeating-linear-gradient(
+      115deg,
+      transparent 0,
+      transparent 18px,
+      rgba(255, 255, 255, .035) 19px,
+      rgba(255, 255, 255, .035) 20px
+    );
+  opacity: .8;
+  z-index: 0;
+  transform: translateX(0);
+  animation: diagonalSpeed 8s linear infinite;
+}
+
+.hero-card.hero-whey-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(120deg, transparent 18%, rgba(255,255,255,.12) 45%, transparent 68%);
+  transform: translateX(-120%) rotate(8deg);
+  animation: heroStrongSweep 4.8s ease-in-out infinite;
+  z-index: 2;
   pointer-events: none;
 }
 
 .hero-whey-glow {
   position: absolute;
-  width: 310px;
-  height: 310px;
+  width: 420px;
+  height: 420px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255, 30, 30, .44), rgba(255, 30, 30, .12) 45%, transparent 72%);
-  filter: blur(18px);
+  background:
+    radial-gradient(circle, rgba(255, 30, 30, .75), rgba(255, 30, 30, .22) 38%, transparent 70%);
+  filter: blur(20px);
   z-index: 0;
-  animation: glowPulse 3.8s ease-in-out infinite;
+  animation: strongGlowPulse 3.2s ease-in-out infinite;
 }
 
 .hero-whey-circle {
   position: absolute;
-  width: 390px;
-  height: 390px;
-  border: 1px solid rgba(255, 255, 255, .10);
+  width: 430px;
+  height: 430px;
+  border: 1px solid rgba(255, 255, 255, .18);
   border-radius: 50%;
-  z-index: 0;
-  animation: rotateCircle 12s linear infinite;
+  z-index: 1;
+  animation: rotateCircle 10s linear infinite;
 }
 
 .hero-whey-circle::before {
   content: "";
   position: absolute;
-  inset: 28px;
+  inset: 26px;
   border-radius: 50%;
-  border: 1px solid rgba(255, 30, 30, .28);
+  border: 1px dashed rgba(255, 30, 30, .52);
+}
+
+.hero-whey-circle::after {
+  content: "";
+  position: absolute;
+  inset: 78px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, .09);
 }
 
 .hero-whey-line {
   position: absolute;
-  width: 72%;
-  height: 2px;
+  width: 92%;
+  height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, transparent, rgba(255, 30, 30, .85), transparent);
-  z-index: 0;
-  opacity: .75;
-  filter: blur(.2px);
+  background: linear-gradient(90deg, transparent, rgba(255, 30, 30, 1), rgba(255,255,255,.85), transparent);
+  z-index: 1;
+  opacity: .9;
+  filter: blur(.1px);
 }
 
 .hero-whey-line.line-one {
-  top: 32%;
-  transform: rotate(-19deg);
-  animation: lineMoveOne 4.8s ease-in-out infinite;
+  top: 30%;
+  transform: rotate(-22deg);
+  animation: lineFastOne 3.6s ease-in-out infinite;
 }
 
 .hero-whey-line.line-two {
-  bottom: 28%;
-  transform: rotate(16deg);
-  animation: lineMoveTwo 5.4s ease-in-out infinite;
+  bottom: 29%;
+  transform: rotate(18deg);
+  animation: lineFastTwo 4s ease-in-out infinite;
 }
 
 .hero-whey-img {
   position: relative;
-  z-index: 3;
-  width: min(78%, 390px) !important;
+  z-index: 4;
+  width: min(92%, 455px) !important;
   height: auto !important;
-  max-height: 460px;
+  max-height: 500px;
   object-fit: contain !important;
   opacity: 1 !important;
   filter:
-    drop-shadow(0 34px 40px rgba(0, 0, 0, .55))
-    drop-shadow(0 0 34px rgba(255, 30, 30, .20));
-  transform: translateY(0) rotate(-2deg) scale(1);
-  transition: transform .18s ease-out, filter .25s ease;
-  animation: wheyFloat 4.6s ease-in-out infinite;
+    drop-shadow(0 42px 42px rgba(0, 0, 0, .70))
+    drop-shadow(0 0 48px rgba(255, 30, 30, .35));
+  transform: translateY(0) rotate(-3deg) scale(1.08);
+  transition: transform .16s ease-out, filter .25s ease;
+  animation: wheyStrongFloat 3.8s ease-in-out infinite;
   will-change: transform;
+}
+
+.hero-card.hero-whey-card:hover {
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.55),
+    0 0 65px rgba(255, 30, 30, .16);
 }
 
 .hero-card.hero-whey-card:hover .hero-whey-img {
   filter:
-    drop-shadow(0 40px 50px rgba(0, 0, 0, .62))
-    drop-shadow(0 0 42px rgba(255, 30, 30, .28));
+    drop-shadow(0 50px 55px rgba(0, 0, 0, .78))
+    drop-shadow(0 0 60px rgba(255, 30, 30, .48));
 }
 
 .hero-card.hero-whey-card .floating-card {
-  z-index: 5;
+  z-index: 6;
+  background: rgba(0,0,0,.68);
+  border: 1px solid rgba(255,255,255,.18);
+  box-shadow: 0 18px 55px rgba(0,0,0,.35);
 }
 
-@keyframes wheyFloat {
+.hero-card.hero-whey-card .floating-card strong {
+  color: #fff;
+}
+
+.hero-card.hero-whey-card .floating-card span {
+  color: rgba(255,255,255,.72);
+}
+
+/* Destaque sutil no título principal sem quebrar seu layout */
+.hero h1 {
+  text-shadow: 0 18px 60px rgba(255, 30, 30, .12);
+}
+
+@keyframes wheyStrongFloat {
   0%, 100% {
-    transform: translateY(0) rotate(-2deg) scale(1);
+    transform: translateY(0) rotate(-3deg) scale(1.08);
   }
 
   50% {
-    transform: translateY(-12px) rotate(1deg) scale(1.025);
+    transform: translateY(-18px) rotate(2deg) scale(1.13);
   }
 }
 
-@keyframes glowPulse {
+@keyframes strongGlowPulse {
   0%, 100% {
-    transform: scale(.94);
-    opacity: .64;
+    transform: scale(.88);
+    opacity: .68;
   }
 
   50% {
-    transform: scale(1.08);
-    opacity: .95;
+    transform: scale(1.14);
+    opacity: 1;
   }
 }
 
@@ -544,47 +595,57 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
   }
 }
 
-@keyframes lineMoveOne {
+@keyframes lineFastOne {
   0%, 100% {
-    transform: rotate(-19deg) translateX(-28px);
+    transform: rotate(-22deg) translateX(-50px);
     opacity: .45;
   }
 
   50% {
-    transform: rotate(-19deg) translateX(28px);
-    opacity: .9;
+    transform: rotate(-22deg) translateX(45px);
+    opacity: 1;
   }
 }
 
-@keyframes lineMoveTwo {
+@keyframes lineFastTwo {
   0%, 100% {
-    transform: rotate(16deg) translateX(32px);
-    opacity: .35;
+    transform: rotate(18deg) translateX(48px);
+    opacity: .42;
   }
 
   50% {
-    transform: rotate(16deg) translateX(-28px);
-    opacity: .85;
+    transform: rotate(18deg) translateX(-45px);
+    opacity: .95;
   }
 }
 
-@keyframes heroLightSweep {
+@keyframes diagonalSpeed {
+  from {
+    transform: translateX(-80px) translateY(-80px);
+  }
+
+  to {
+    transform: translateX(80px) translateY(80px);
+  }
+}
+
+@keyframes heroStrongSweep {
   0%, 100% {
-    transform: translateX(-42%) rotate(8deg);
+    transform: translateX(-120%) rotate(8deg);
     opacity: 0;
   }
 
-  45%, 55% {
+  42%, 55% {
     opacity: 1;
   }
 
   100% {
-    transform: translateX(42%) rotate(8deg);
+    transform: translateX(120%) rotate(8deg);
     opacity: 0;
   }
 }
 
-/* Ajuste mobile do hero com whey */
+/* Mobile */
 @media (max-width: 880px) {
   .hero-card.hero-whey-card {
     min-height: 430px;
@@ -593,22 +654,22 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
   }
 
   .hero-whey-img {
-    width: min(76%, 295px) !important;
-    max-height: 335px;
+    width: min(88%, 340px) !important;
+    max-height: 360px;
   }
 
   .hero-whey-circle {
+    width: 330px;
+    height: 330px;
+  }
+
+  .hero-whey-glow {
     width: 300px;
     height: 300px;
   }
 
-  .hero-whey-glow {
-    width: 240px;
-    height: 240px;
-  }
-
   .hero-whey-line {
-    width: 86%;
+    width: 105%;
   }
 
   .hero-card.hero-whey-card .floating-card {
@@ -627,24 +688,24 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
   }
 
   .hero-card.hero-whey-card {
-    min-height: 390px;
-    height: 390px;
+    min-height: 400px;
+    height: 400px;
     border-radius: 28px;
   }
 
   .hero-whey-img {
-    width: min(82%, 255px) !important;
-    max-height: 305px;
+    width: min(92%, 300px) !important;
+    max-height: 325px;
   }
 
   .hero-whey-circle {
-    width: 260px;
-    height: 260px;
+    width: 280px;
+    height: 280px;
   }
 
   .hero-whey-glow {
-    width: 210px;
-    height: 210px;
+    width: 240px;
+    height: 240px;
   }
 
   .hero-card.hero-whey-card .floating-card {
@@ -653,9 +714,9 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
   }
 }
 
-/* Reduz animações para pessoas com preferência de movimento reduzido */
 @media (prefers-reduced-motion: reduce) {
   .hero-card.hero-whey-card::before,
+  .hero-card.hero-whey-card::after,
   .hero-whey-img,
   .hero-whey-glow,
   .hero-whey-circle,
@@ -664,4 +725,3 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
     transition: none !important;
   }
 }
-
