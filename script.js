@@ -143,6 +143,7 @@ function setupWheyHeroEffect() {
   let mouseX = 0;
   let mouseY = 0;
   let scrollMove = 0;
+  let rotateScroll = 0;
   let ticking = false;
 
   function applyTransform() {
@@ -151,14 +152,14 @@ function setupWheyHeroEffect() {
     if (isMobile) {
       wheyImage.style.transform = `
         translateY(${scrollMove}px)
-        rotate(-2deg)
-        scale(1.02)
+        rotate(${rotateScroll - 3}deg)
+        scale(1.10)
       `;
     } else {
       wheyImage.style.transform = `
         translate(${mouseX}px, ${scrollMove + mouseY}px)
-        rotate(${mouseX * 0.035 - 2}deg)
-        scale(1.035)
+        rotate(${rotateScroll + mouseX * 0.05 - 3}deg)
+        scale(1.14)
       `;
     }
 
@@ -181,7 +182,8 @@ function setupWheyHeroEffect() {
       1
     );
 
-    scrollMove = progress * 34;
+    scrollMove = progress * 58;
+    rotateScroll = progress * 7;
 
     requestTransform();
   });
@@ -191,13 +193,14 @@ function setupWheyHeroEffect() {
 
     const rect = wheyCard.getBoundingClientRect();
 
-    mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 22;
-    mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 18;
+    mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 38;
+    mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 30;
 
     wheyCard.style.transform = `
       perspective(1000px)
-      rotateX(${mouseY * -0.18}deg)
-      rotateY(${mouseX * 0.18}deg)
+      rotateX(${mouseY * -0.26}deg)
+      rotateY(${mouseX * 0.24}deg)
+      scale(1.015)
     `;
 
     requestTransform();
@@ -211,16 +214,9 @@ function setupWheyHeroEffect() {
       perspective(1000px)
       rotateX(0deg)
       rotateY(0deg)
+      scale(1)
     `;
 
     requestTransform();
   });
 }
-
-document.addEventListener("DOMContentLoaded", () => {
-  renderProducts();
-
-  updateCart();
-
-  setupWheyHeroEffect();
-});
