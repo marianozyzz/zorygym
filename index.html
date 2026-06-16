@@ -39,7 +39,7 @@
 
       <div class="nav-actions">
 
-        <a href="conta.html" class="account-btn" aria-label="Minha conta">
+        <a href="conta.html" class="account-btn">
 
           <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
 
@@ -62,7 +62,7 @@
 
         </a>
 
-        <button class="cart-btn" onclick="toggleCart()" type="button">
+        <button class="cart-btn" onclick="toggleCart()">
           Carrinho <span id="cartCount">0</span>
         </button>
 
@@ -74,13 +74,7 @@
 
   <main>
 
-    <section class="hero hero-premium" id="inicio">
-
-      <div class="hero-background" aria-hidden="true">
-        <div class="hero-blur blur-1"></div>
-        <div class="hero-blur blur-2"></div>
-        <div class="hero-grid"></div>
-      </div>
+    <section class="hero">
 
       <div class="hero-content">
 
@@ -89,13 +83,11 @@
         </span>
 
         <h1>
-          Performance <br />
-          sem desculpas.
+          Performance sem desculpas.
         </h1>
 
         <p>
-          Suplementos, roupas e acessórios para quem treina com intensidade,
-          presença e estética.
+          Suplementos, roupas e acessórios para quem treina com intensidade e vive estética.
         </p>
 
         <div class="hero-actions">
@@ -110,76 +102,34 @@
 
         </div>
 
-        <div class="hero-metrics">
+      </div>
 
-          <div class="metric glass">
-            <strong>
-              Alta performance
-            </strong>
+      <div class="hero-card glass hero-whey-card" id="wheyHeroCard">
 
-            <span>
-              Energia, foco e resultado
-            </span>
-          </div>
+        <div class="hero-whey-glow"></div>
+        <div class="hero-whey-circle"></div>
+        <div class="hero-whey-line line-one"></div>
+        <div class="hero-whey-line line-two"></div>
 
-          <div class="metric glass">
-            <strong>
-              Visual premium
-            </strong>
+        <img
+          src="assets/whey-hero.png"
+          alt="Whey Protein em destaque"
+          class="hero-whey-img"
+          id="wheyHeroImage"
+        />
 
-            <span>
-              Estética forte para quem treina
-            </span>
-          </div>
+        <div class="floating-card">
+
+          <strong>
+            WHEY PROTEIN 80%
+          </strong>
+
+          <span>
+            Performance essentials
+          </span>
 
         </div>
 
-      </div>
-
-      <div class="hero-visual">
-
-        <div class="product-showcase glass" id="productShowcase">
-
-          <div class="product-glow" aria-hidden="true"></div>
-          <div class="product-orbit orbit-1" aria-hidden="true"></div>
-          <div class="product-orbit orbit-2" aria-hidden="true"></div>
-
-          <img
-            src="assets/whey-hero.png"
-            alt="Whey Protein em destaque"
-            class="hero-product"
-            id="heroProduct"
-          />
-
-          <div class="floating-info top glass">
-            <strong>
-              Whey Protein 80%
-            </strong>
-
-            <span>
-              Proteína para força, recuperação e evolução.
-            </span>
-          </div>
-
-          <div class="floating-info bottom glass">
-            <strong>
-              ZORY ESSENTIALS
-            </strong>
-
-            <span>
-              Performance todos os dias.
-            </span>
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="scroll-indicator" aria-hidden="true">
-        <span></span>
-        <p>
-          Role para explorar
-        </p>
       </div>
 
     </section>
@@ -279,7 +229,7 @@
 
   <aside class="cart glass" id="cart">
 
-    <button class="close" onclick="toggleCart()" type="button">
+    <button class="close" onclick="toggleCart()">
       ×
     </button>
 
@@ -300,7 +250,6 @@
       class="btn primary full"
       id="whatsappCheckout"
       target="_blank"
-      rel="noopener noreferrer"
     >
       Finalizar no WhatsApp
     </a>
