@@ -821,3 +821,228 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
     animation: none !important;
   }
 }
+
+
+/* ==============================
+   SEÇÃO LORENA - FACE DA ZORY
+   Colocar abaixo de Categorias Zory
+   ============================== */
+
+.lorena-section {
+  max-width: 1180px;
+  margin: 90px auto;
+  padding: 0 18px;
+}
+
+.lorena-card {
+  position: relative;
+  border-radius: 42px;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: .92fr 1.08fr;
+  min-height: 620px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255, 30, 30, .26), transparent 28%),
+    radial-gradient(circle at 90% 85%, rgba(255, 106, 0, .12), transparent 30%),
+    linear-gradient(135deg, rgba(8,8,8,.96), rgba(28,0,0,.92));
+}
+
+.lorena-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      120deg,
+      transparent 0,
+      transparent 22px,
+      rgba(255,255,255,.035) 23px,
+      rgba(255,255,255,.035) 24px
+    );
+  opacity: .6;
+  pointer-events: none;
+}
+
+.lorena-card::after {
+  content: "ZORY";
+  position: absolute;
+  right: -20px;
+  bottom: -34px;
+  font-size: clamp(80px, 15vw, 190px);
+  font-weight: 900;
+  letter-spacing: -10px;
+  color: rgba(255,255,255,.035);
+  pointer-events: none;
+  line-height: .8;
+}
+
+.lorena-image-wrap {
+  position: relative;
+  min-height: 620px;
+  overflow: hidden;
+  border-radius: 42px 0 0 42px;
+}
+
+.lorena-image-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, transparent 58%, rgba(8,8,8,.72) 100%),
+    linear-gradient(0deg, rgba(0,0,0,.28), transparent 40%);
+  pointer-events: none;
+}
+
+.lorena-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transform: scale(1.03);
+  filter:
+    contrast(1.06)
+    saturate(1.05)
+    drop-shadow(0 30px 60px rgba(0,0,0,.38));
+}
+
+.lorena-badge {
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  z-index: 2;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.68);
+  border: 1px solid rgba(255,255,255,.18);
+  backdrop-filter: blur(16px);
+  box-shadow: 0 16px 50px rgba(0,0,0,.35);
+}
+
+.lorena-badge span {
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.lorena-content {
+  position: relative;
+  z-index: 2;
+  padding: 58px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.lorena-content h2 {
+  font-size: clamp(36px, 5vw, 70px);
+  line-height: .95;
+  letter-spacing: -3px;
+  max-width: 650px;
+  margin-bottom: 24px;
+}
+
+.lorena-content p {
+  color: var(--muted);
+  font-size: 19px;
+  line-height: 1.7;
+  max-width: 560px;
+  margin-bottom: 26px;
+}
+
+.lorena-quote {
+  position: relative;
+  color: #fff;
+  font-size: 21px;
+  line-height: 1.45;
+  font-weight: 800;
+  max-width: 520px;
+  padding: 22px 24px;
+  margin-bottom: 28px;
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, rgba(255, 30, 30, .18), rgba(255,255,255,.06));
+  border: 1px solid rgba(255,255,255,.12);
+}
+
+.lorena-quote::before {
+  content: "";
+  position: absolute;
+  left: 24px;
+  top: -2px;
+  width: 72px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--red), transparent);
+}
+
+/* Mobile Lorena */
+@media (max-width: 880px) {
+  .lorena-section {
+    margin: 70px auto;
+  }
+
+  .lorena-card {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    border-radius: 34px;
+  }
+
+  .lorena-image-wrap {
+    min-height: 520px;
+    border-radius: 34px 34px 0 0;
+  }
+
+  .lorena-image-wrap::after {
+    background:
+      linear-gradient(0deg, rgba(8,8,8,.78) 0%, transparent 45%),
+      linear-gradient(90deg, rgba(0,0,0,.10), transparent);
+  }
+
+  .lorena-content {
+    padding: 34px 24px 38px;
+  }
+
+  .lorena-content h2 {
+    letter-spacing: -2px;
+  }
+
+  .lorena-content p {
+    font-size: 16px;
+  }
+
+  .lorena-quote {
+    font-size: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lorena-section {
+    margin: 60px auto;
+  }
+
+  .lorena-card {
+    border-radius: 28px;
+  }
+
+  .lorena-image-wrap {
+    min-height: 430px;
+    border-radius: 28px 28px 0 0;
+  }
+
+  .lorena-content {
+    padding: 28px 20px 32px;
+  }
+
+  .lorena-badge {
+    left: 16px;
+    bottom: 16px;
+  }
+
+  .lorena-card::after {
+    right: -10px;
+    bottom: -18px;
+    letter-spacing: -5px;
+  }
+}
