@@ -130,59 +130,28 @@ function updateCart() {
 }
 
 /* ==============================
-   EFEITO DE ROLAGEM DO WHEY
-   Compatível com o index corrigido
+   HERO WHEY - PARALLAX CONTROLADO
+   Só mexe na rolagem/toque e no mouse
    ============================== */
 
 function setupWheyHeroEffect() {
   const wheyCard = document.getElementById("wheyHeroCard");
-  const floatingElements = document.querySelectorAll("[data-float]");
+  const wheyImage = document.getElementById("wheyHeroImage");
+  const floatingElements = document.querySelectorAll("#wheyHeroCard [data-float]");
 
-  if (!wheyCard || floatingElements.length === 0) return;
+  if (!wheyCard || !wheyImage || floatingElements.length === 0) return;
 
-  let mouseX = 0;
-  let mouseY = 0;
-  let scrollProgress = 0;
+  let targetProgress = 0;
+  let currentProgress = 0;
+
+  let targetMouseX = 0;
+  let targetMouseY = 0;
+  let currentMouseX = 0;
+  let currentMouseY = 0;
+
   let ticking = false;
 
-  function applyParallax() {
-    const isMobile = window.innerWidth <= 880;
-
-    floatingElements.forEach((element) => {
-      const x = Number(element.dataset.x || 0);
-      const y = Number(element.dataset.y || 0);
-      const rotate = Number(element.dataset.rotate || 0);
-      const depth = Number(element.dataset.depth || 1);
-
-      const scrollX = x * scrollProgress;
-      const scrollY = y * scrollProgress;
-      const scrollRotate = rotate * scrollProgress;
-
-      const mouseMoveX = isMobile ? 0 : mouseX * depth;
-      const mouseMoveY = isMobile ? 0 : mouseY * depth;
-
-      const scale = element.id === "wheyHeroImage"
-        ? 1.10 + scrollProgress * 0.08
-        : 1 + scrollProgress * 0.12;
-
-      element.style.transform = `
-        translate3d(${scrollX + mouseMoveX}px, ${scrollY + mouseMoveY}px, 0)
-        rotate(${scrollRotate}deg)
-        scale(${scale})
-      `;
-    });
-
-    ticking = false;
-  }
-
-  function requestParallax() {
-    if (!ticking) {
-      window.requestAnimationFrame(applyParallax);
-      ticking = true;
-    }
-  }
-
-  function updateScrollProgress() {
+  function calculateProgress() {
     const rect = wheyCard.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
@@ -190,47 +159,115 @@ function setupWheyHeroEffect() {
     const end = -rect.height * 0.25;
 
     let progress = (start - rect.top) / (start - end);
-
     progress = Math.max(0, Math.min(progress, 1));
 
-    scrollProgress = progress;
-
-    requestParallax();
+    targetProgress = progress;
   }
 
-  window.addEventListener("scroll", updateScrollProgress);
+  function renderParallax() {
+    currentProgress += (targetProgress - currentProgress) * 0.12;
+    currentMouseX += (targetMouseX - currentMouseX) * 0.10;
+    currentMouseY += (targetMouseY - currentMouseY) * 0.10;
+
+    const isMobile = window.innerWidth <= 880;
+
+    floatingElements.forEach((element) => {
+      const baseX = Number(element.dataset.x || 0);
+      const baseY = Number(element.dataset.y || 0);
+      const baseRotate = Number(element.dataset.rotate || 0);
+      const depth = Number(element.dataset.depth || 1);
+
+      let moveX = baseX * currentProgress;
+      let moveY = baseY * currentProgress;
+      let rotate = baseRotate * currentProgress;
+      let scale = 1 + currentProgress * 0.08;
+
+      if (element.id === "wheyHeroImage") {
+        moveX = 0;
+        moveY = currentProgress * 30;
+        rotate = -3 + currentProgress * 4;
+        scale = 1.08 + currentProgress * 0.05;
+      }
+
+      if (!isMobile) {
+        moveX += currentMouseX * depth;
+        moveY += currentMouseY * depth;
+      }
+
+      element.style.transform = `
+        translate3d(${moveX}px, ${moveY}px, 0)
+        rotate(${rotate}deg)
+        scale(${scale})
+      `;
+    });
+
+    const hasMovement =
+      Math.abs(targetProgress - currentProgress) > 0.001 ||
+      Math.abs(targetMouseX - currentMouseX) > 0.05 ||
+      Math.abs(targetMouseY - currentMouseY) > 0.05;
+
+    if (hasMovement) {
+      requestAnimationFrame(renderParallax);
+    } else {
+      ticking = false;
+    }
+  }
+
+  function requestRender() {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(renderParallax);
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    calculateProgress();
+    requestRender();
+  }, { passive: true });
+
+  window.addEventListener("resize", () => {
+    calculateProgress();
+    requestRender();
+  });
 
   wheyCard.addEventListener("mousemove", (event) => {
     if (window.innerWidth <= 880) return;
 
     const rect = wheyCard.getBoundingClientRect();
 
-    mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 42;
-    mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 34;
+    targetMouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 32;
+    targetMouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 26;
 
     wheyCard.style.transform = `
       perspective(1000px)
-      rotateX(${mouseY * -0.20}deg)
-      rotateY(${mouseX * 0.18}deg)
-      scale(1.015)
+      rotateX(${targetMouseY * -0.16}deg)
+      rotateY(${targetMouseX * 0.14}deg)
     `;
 
-    requestParallax();
+    requestRender();
   });
 
   wheyCard.addEventListener("mouseleave", () => {
-    mouseX = 0;
-    mouseY = 0;
+    targetMouseX = 0;
+    targetMouseY = 0;
 
     wheyCard.style.transform = `
       perspective(1000px)
       rotateX(0deg)
       rotateY(0deg)
-      scale(1)
     `;
 
-    requestParallax();
+    requestRender();
   });
 
-  updateScrollProgress();
+  calculateProgress();
+  requestRender();
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderProducts();
+
+  updateCart();
+
+  setupWheyHeroEffect();
+});
