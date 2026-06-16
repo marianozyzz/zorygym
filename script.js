@@ -42,7 +42,6 @@ function money(value) {
 }
 
 function renderProducts() {
-
   if (!grid) return;
 
   grid.innerHTML = products.map((p, index) => `
@@ -66,11 +65,9 @@ function renderProducts() {
 
     </article>
   `).join("");
-
 }
 
 function addToCart(index) {
-
   cart.push(products[index]);
 
   updateCart();
@@ -78,35 +75,26 @@ function addToCart(index) {
   if (cartEl) {
     cartEl.classList.add("open");
   }
-
 }
 
 function toggleCart() {
-
   if (!cartEl) return;
 
   cartEl.classList.toggle("open");
-
 }
 
 function updateCart() {
-
   if (cartCount) {
     cartCount.textContent = cart.length;
   }
 
   if (cartItems) {
-
     if (cart.length === 0) {
-
       cartItems.innerHTML = `
         <p>Seu carrinho está vazio.</p>
       `;
-
     } else {
-
       cartItems.innerHTML = cart.map(item => `
-
         <div class="cart-item">
 
           <span>${item.name}</span>
@@ -114,11 +102,8 @@ function updateCart() {
           <strong>${money(item.price)}</strong>
 
         </div>
-
       `).join("");
-
     }
-
   }
 
   const total = cart.reduce(
@@ -131,29 +116,111 @@ function updateCart() {
   }
 
   if (whatsappCheckout) {
-
     const message = encodeURIComponent(
-
       "Olá! Quero finalizar meu pedido Zory:\n\n" +
-
       cart.map(item =>
         `• ${item.name} - ${money(item.price)}`
       ).join("\n") +
-
       `\n\nTotal: ${money(total)}`
-
     );
 
     whatsappCheckout.href =
       `https://wa.me/5521990073735?text=${message}`;
   }
+}
 
+/* ==============================
+   EFEITO DE ROLAGEM DO WHEY
+   Compatível com o index corrigido
+   ============================== */
+
+function setupWheyHeroEffect() {
+  const wheyImage = document.getElementById("wheyHeroImage");
+  const wheyCard = document.getElementById("wheyHeroCard");
+
+  if (!wheyImage || !wheyCard) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let scrollMove = 0;
+  let ticking = false;
+
+  function applyTransform() {
+    const isMobile = window.innerWidth <= 880;
+
+    if (isMobile) {
+      wheyImage.style.transform = `
+        translateY(${scrollMove}px)
+        rotate(-2deg)
+        scale(1.02)
+      `;
+    } else {
+      wheyImage.style.transform = `
+        translate(${mouseX}px, ${scrollMove + mouseY}px)
+        rotate(${mouseX * 0.035 - 2}deg)
+        scale(1.035)
+      `;
+    }
+
+    ticking = false;
+  }
+
+  function requestTransform() {
+    if (!ticking) {
+      window.requestAnimationFrame(applyTransform);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    const cardPosition = wheyCard.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const progress = 1 - Math.min(
+      Math.max(cardPosition.top / windowHeight, 0),
+      1
+    );
+
+    scrollMove = progress * 34;
+
+    requestTransform();
+  });
+
+  wheyCard.addEventListener("mousemove", (event) => {
+    if (window.innerWidth <= 880) return;
+
+    const rect = wheyCard.getBoundingClientRect();
+
+    mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 22;
+    mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 18;
+
+    wheyCard.style.transform = `
+      perspective(1000px)
+      rotateX(${mouseY * -0.18}deg)
+      rotateY(${mouseX * 0.18}deg)
+    `;
+
+    requestTransform();
+  });
+
+  wheyCard.addEventListener("mouseleave", () => {
+    mouseX = 0;
+    mouseY = 0;
+
+    wheyCard.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+    `;
+
+    requestTransform();
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
   renderProducts();
 
   updateCart();
 
+  setupWheyHeroEffect();
 });
