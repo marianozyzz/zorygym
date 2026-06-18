@@ -1166,147 +1166,170 @@ footer strong { display: block; color: #fff; font-size: 32px; margin-bottom: 8px
 
 
 /* ==============================
-   ARANHA ZORY - BURACO PARALLAX
-   Aparece no espaço entre Hero e Categorias
+   DETALHES ZORY - LOADING E FOOTER
+   Aranha usada de forma discreta
    ============================== */
 
-.spider-reveal {
-  position: relative;
-  max-width: 1180px;
-  height: 320px;
-  margin: -35px auto 5px;
-  padding: 0 18px;
-  pointer-events: none;
-  z-index: 2;
+.zory-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background:
+    radial-gradient(circle at center, rgba(255, 30, 30, .18), transparent 34%),
+    linear-gradient(135deg, #050505 0%, #120000 58%, #050505 100%);
+  transition:
+    opacity .55s ease,
+    visibility .55s ease;
 }
 
-.spider-reveal-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
+body.loaded .zory-loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.loader-spider-mark {
+  width: 92px;
+  height: 92px;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.spider-reveal-inner::before {
-  content: "";
-  position: absolute;
-  width: min(620px, 88vw);
-  height: 210px;
+  margin-bottom: 8px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 54%, rgba(255, 30, 30, .17), transparent 56%),
-    radial-gradient(circle at 50% 50%, rgba(255,255,255,.025), transparent 62%);
-  filter: blur(18px);
-  opacity: .75;
-}
-
-.spider-hole {
-  position: relative;
-  width: clamp(260px, 40vw, 520px);
-  height: clamp(130px, 19vw, 245px);
-  border-radius: 50%;
-  overflow: hidden;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  opacity: .16;
-  transform: translateY(46px) scale(.86);
-  will-change: transform, opacity, filter;
-  background:
-    radial-gradient(circle at 50% 52%, rgba(0,0,0,1) 0%, rgba(0,0,0,.96) 40%, rgba(17,0,0,.88) 58%, rgba(80,0,0,.34) 72%, transparent 100%);
-  box-shadow:
-    inset 0 24px 70px rgba(0,0,0,.98),
-    inset 0 -26px 52px rgba(255,30,30,.14),
-    0 0 80px rgba(255,30,30,.08),
-    0 28px 90px rgba(0,0,0,.62);
-}
-
-.spider-hole::before {
-  content: "";
-  position: absolute;
-  inset: 7px;
-  border-radius: 50%;
-  border: 1px solid rgba(255,255,255,.045);
-  box-shadow:
-    inset 0 0 44px rgba(255,255,255,.025),
-    0 0 22px rgba(255,30,30,.12);
-  z-index: 3;
-}
-
-.spider-hole::after {
-  content: "";
-  position: absolute;
-  left: 14%;
-  right: 14%;
-  bottom: 10px;
-  height: 34px;
-  border-radius: 50%;
-  background: rgba(0,0,0,.78);
-  filter: blur(15px);
-  z-index: 1;
-}
-
-.spider-symbol {
-  position: relative;
-  z-index: 2;
-  width: clamp(320px, 54vw, 690px);
-  max-width: none;
-  opacity: .44;
-  transform: translateY(74%) scale(1.04) rotate(0deg);
-  will-change: transform, opacity, filter;
-  mix-blend-mode: screen;
+    radial-gradient(circle, rgba(255,255,255,.08), rgba(255,30,30,.08), transparent 70%);
   filter:
-    drop-shadow(0 0 14px rgba(255,255,255,.10))
-    drop-shadow(0 0 34px rgba(255,30,30,.26))
-    drop-shadow(0 24px 35px rgba(0,0,0,.82));
+    drop-shadow(0 0 24px rgba(255, 30, 30, .28))
+    drop-shadow(0 0 10px rgba(255,255,255,.12));
+  animation: loaderSpiderPulse 1.7s ease-in-out infinite;
 }
 
-/* Classe ativada pelo JS quando chega na área */
-.spider-hole.is-visible {
-  opacity: .72;
-}
-
-.spider-hole.is-visible .spider-symbol {
+.loader-spider-mark img {
+  width: 76px;
+  height: auto;
   opacity: .92;
 }
 
-/* Mobile */
-@media (max-width: 880px) {
-  .spider-reveal {
-    height: 240px;
-    margin: -20px auto 0;
+.zory-loader strong {
+  color: #fff;
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.zory-loader span {
+  color: rgba(255,255,255,.62);
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+@keyframes loaderSpiderPulse {
+  0%, 100% {
+    transform: scale(.96);
+    opacity: .72;
   }
 
-  .spider-hole {
-    width: min(88vw, 410px);
-    height: 172px;
-  }
-
-  .spider-symbol {
-    width: min(108vw, 520px);
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
   }
 }
 
+/* Pequeno detalhe da aranha no footer */
+footer {
+  position: relative;
+  overflow: hidden;
+}
+
+.footer-spider-mark {
+  width: 66px;
+  height: 66px;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: .30;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255,30,30,.16), transparent 68%);
+  filter:
+    drop-shadow(0 0 20px rgba(255,30,30,.18))
+    drop-shadow(0 0 8px rgba(255,255,255,.08));
+  transition: .28s ease;
+}
+
+.footer-spider-mark img {
+  width: 56px;
+  height: auto;
+}
+
+footer:hover .footer-spider-mark {
+  opacity: .62;
+  transform: translateY(-4px) scale(1.04);
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 22px;
+  width: min(580px, 88vw);
+  height: 1px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, rgba(255,30,30,.32), transparent);
+  opacity: .8;
+}
+
+footer::after {
+  content: "ZORY";
+  position: absolute;
+  left: 50%;
+  bottom: -24px;
+  transform: translateX(-50%);
+  font-size: clamp(82px, 16vw, 190px);
+  font-weight: 900;
+  letter-spacing: -8px;
+  color: rgba(255,255,255,.025);
+  z-index: -1;
+  pointer-events: none;
+}
+
 @media (max-width: 480px) {
-  .spider-reveal {
-    height: 210px;
+  .loader-spider-mark {
+    width: 78px;
+    height: 78px;
   }
 
-  .spider-hole {
-    height: 148px;
+  .loader-spider-mark img {
+    width: 64px;
   }
 
-  .spider-symbol {
-    width: min(118vw, 460px);
+  .zory-loader strong {
+    font-size: 30px;
+  }
+
+  .footer-spider-mark {
+    width: 58px;
+    height: 58px;
+  }
+
+  .footer-spider-mark img {
+    width: 48px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .spider-hole,
-  .spider-symbol {
-    transition: none !important;
+  .loader-spider-mark {
     animation: none !important;
+  }
+
+  .zory-loader,
+  .footer-spider-mark {
+    transition: none !important;
   }
 }
