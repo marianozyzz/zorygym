@@ -130,33 +130,114 @@ function updateCart() {
 }
 
 /* ==============================
-   HERO WHEY - PARALLAX CONTROLADO
-   Só mexe na rolagem/toque e no mouse
+   EFEITO DE ROLAGEM DO WHEY
+   Compatível com o index corrigido
    ============================== */
 
 function setupWheyHeroEffect() {
-  const wheyCard = document.getElementById("wheyHeroCard");
   const wheyImage = document.getElementById("wheyHeroImage");
-  const floatingElements = document.querySelectorAll("#wheyHeroCard [data-float]");
+  const wheyCard = document.getElementById("wheyHeroCard");
 
-  if (!wheyCard || !wheyImage || floatingElements.length === 0) return;
+  if (!wheyImage || !wheyCard) return;
+
+  let mouseX = 0;
+  let mouseY = 0;
+  let scrollMove = 0;
+  let ticking = false;
+
+  function applyTransform() {
+    const isMobile = window.innerWidth <= 880;
+
+    if (isMobile) {
+      wheyImage.style.transform = `
+        translateY(${scrollMove}px)
+        rotate(-2deg)
+        scale(1.02)
+      `;
+    } else {
+      wheyImage.style.transform = `
+        translate(${mouseX}px, ${scrollMove + mouseY}px)
+        rotate(${mouseX * 0.035 - 2}deg)
+        scale(1.035)
+      `;
+    }
+
+    ticking = false;
+  }
+
+  function requestTransform() {
+    if (!ticking) {
+      window.requestAnimationFrame(applyTransform);
+      ticking = true;
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    const cardPosition = wheyCard.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    const progress = 1 - Math.min(
+      Math.max(cardPosition.top / windowHeight, 0),
+      1
+    );
+
+    scrollMove = progress * 34;
+
+    requestTransform();
+  });
+
+  wheyCard.addEventListener("mousemove", (event) => {
+    if (window.innerWidth <= 880) return;
+
+    const rect = wheyCard.getBoundingClientRect();
+
+    mouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 22;
+    mouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 18;
+
+    wheyCard.style.transform = `
+      perspective(1000px)
+      rotateX(${mouseY * -0.18}deg)
+      rotateY(${mouseX * 0.18}deg)
+    `;
+
+    requestTransform();
+  });
+
+  wheyCard.addEventListener("mouseleave", () => {
+    mouseX = 0;
+    mouseY = 0;
+
+    wheyCard.style.transform = `
+      perspective(1000px)
+      rotateX(0deg)
+      rotateY(0deg)
+    `;
+
+    requestTransform();
+  });
+}
+
+/* ==============================
+   ARANHA ZORY - BURACO PARALLAX
+   ============================== */
+
+function setupSpiderRevealEffect() {
+  const section = document.getElementById("zory-spider-reveal");
+  const hole = document.getElementById("spiderHole");
+  const spider = document.getElementById("spiderSymbol");
+
+  if (!section || !hole || !spider) return;
 
   let targetProgress = 0;
   let currentProgress = 0;
-
-  let targetMouseX = 0;
-  let targetMouseY = 0;
-  let currentMouseX = 0;
-  let currentMouseY = 0;
-
   let ticking = false;
 
   function calculateProgress() {
-    const rect = wheyCard.getBoundingClientRect();
+    const rect = section.getBoundingClientRect();
     const windowHeight = window.innerHeight;
 
-    const start = windowHeight * 0.90;
-    const end = -rect.height * 0.25;
+    const start = windowHeight * 0.95;
+    const end = windowHeight * 0.18;
 
     let progress = (start - rect.top) / (start - end);
     progress = Math.max(0, Math.min(progress, 1));
@@ -164,50 +245,43 @@ function setupWheyHeroEffect() {
     targetProgress = progress;
   }
 
-  function renderParallax() {
+  function renderSpider() {
     currentProgress += (targetProgress - currentProgress) * 0.12;
-    currentMouseX += (targetMouseX - currentMouseX) * 0.10;
-    currentMouseY += (targetMouseY - currentMouseY) * 0.10;
 
-    const isMobile = window.innerWidth <= 880;
+    const reveal = Math.sin(currentProgress * Math.PI);
 
-    floatingElements.forEach((element) => {
-      const baseX = Number(element.dataset.x || 0);
-      const baseY = Number(element.dataset.y || 0);
-      const baseRotate = Number(element.dataset.rotate || 0);
-      const depth = Number(element.dataset.depth || 1);
+    const holeScale = 0.84 + reveal * 0.25;
+    const holeY = 48 - reveal * 38;
+    const holeOpacity = 0.14 + reveal * 0.66;
 
-      let moveX = baseX * currentProgress;
-      let moveY = baseY * currentProgress;
-      let rotate = baseRotate * currentProgress;
-      let scale = 1 + currentProgress * 0.08;
+    const spiderY = 78 - reveal * 34;
+    const spiderScale = 1.02 + reveal * 0.14;
+    const spiderRotate = (currentProgress - 0.5) * 5;
 
-      if (element.id === "wheyHeroImage") {
-        moveX = 0;
-        moveY = currentProgress * 30;
-        rotate = -3 + currentProgress * 4;
-        scale = 1.08 + currentProgress * 0.05;
-      }
+    hole.style.transform = `
+      translateY(${holeY}px)
+      scale(${holeScale})
+    `;
 
-      if (!isMobile) {
-        moveX += currentMouseX * depth;
-        moveY += currentMouseY * depth;
-      }
+    hole.style.opacity = holeOpacity;
+    hole.style.filter = `blur(${(1 - reveal) * 1.35}px)`;
 
-      element.style.transform = `
-        translate3d(${moveX}px, ${moveY}px, 0)
-        rotate(${rotate}deg)
-        scale(${scale})
-      `;
-    });
+    spider.style.transform = `
+      translateY(${spiderY}%)
+      scale(${spiderScale})
+      rotate(${spiderRotate}deg)
+    `;
 
-    const hasMovement =
-      Math.abs(targetProgress - currentProgress) > 0.001 ||
-      Math.abs(targetMouseX - currentMouseX) > 0.05 ||
-      Math.abs(targetMouseY - currentMouseY) > 0.05;
+    spider.style.opacity = 0.32 + reveal * 0.62;
 
-    if (hasMovement) {
-      requestAnimationFrame(renderParallax);
+    if (reveal > 0.18) {
+      hole.classList.add("is-visible");
+    } else {
+      hole.classList.remove("is-visible");
+    }
+
+    if (Math.abs(targetProgress - currentProgress) > 0.002) {
+      requestAnimationFrame(renderSpider);
     } else {
       ticking = false;
     }
@@ -216,7 +290,7 @@ function setupWheyHeroEffect() {
   function requestRender() {
     if (!ticking) {
       ticking = true;
-      requestAnimationFrame(renderParallax);
+      requestAnimationFrame(renderSpider);
     }
   }
 
@@ -230,36 +304,6 @@ function setupWheyHeroEffect() {
     requestRender();
   });
 
-  wheyCard.addEventListener("mousemove", (event) => {
-    if (window.innerWidth <= 880) return;
-
-    const rect = wheyCard.getBoundingClientRect();
-
-    targetMouseX = ((event.clientX - rect.left) / rect.width - 0.5) * 32;
-    targetMouseY = ((event.clientY - rect.top) / rect.height - 0.5) * 26;
-
-    wheyCard.style.transform = `
-      perspective(1000px)
-      rotateX(${targetMouseY * -0.16}deg)
-      rotateY(${targetMouseX * 0.14}deg)
-    `;
-
-    requestRender();
-  });
-
-  wheyCard.addEventListener("mouseleave", () => {
-    targetMouseX = 0;
-    targetMouseY = 0;
-
-    wheyCard.style.transform = `
-      perspective(1000px)
-      rotateX(0deg)
-      rotateY(0deg)
-    `;
-
-    requestRender();
-  });
-
   calculateProgress();
   requestRender();
 }
@@ -270,4 +314,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateCart();
 
   setupWheyHeroEffect();
+
+  setupSpiderRevealEffect();
 });
