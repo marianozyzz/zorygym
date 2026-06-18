@@ -131,7 +131,6 @@ function updateCart() {
 
 /* ==============================
    EFEITO DE ROLAGEM DO WHEY
-   Compatível com o index corrigido
    ============================== */
 
 function setupWheyHeroEffect() {
@@ -184,7 +183,7 @@ function setupWheyHeroEffect() {
     scrollMove = progress * 34;
 
     requestTransform();
-  });
+  }, { passive: true });
 
   wheyCard.addEventListener("mousemove", (event) => {
     if (window.innerWidth <= 880) return;
@@ -218,94 +217,22 @@ function setupWheyHeroEffect() {
 }
 
 /* ==============================
-   ARANHA ZORY - BURACO PARALLAX
+   LOADING ZORY
    ============================== */
 
-function setupSpiderRevealEffect() {
-  const section = document.getElementById("zory-spider-reveal");
-  const hole = document.getElementById("spiderHole");
-  const spider = document.getElementById("spiderSymbol");
+function setupZoryLoader() {
+  const loader = document.getElementById("zoryLoader");
 
-  if (!section || !hole || !spider) return;
-
-  let targetProgress = 0;
-  let currentProgress = 0;
-  let ticking = false;
-
-  function calculateProgress() {
-    const rect = section.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-
-    const start = windowHeight * 0.95;
-    const end = windowHeight * 0.18;
-
-    let progress = (start - rect.top) / (start - end);
-    progress = Math.max(0, Math.min(progress, 1));
-
-    targetProgress = progress;
+  if (!loader) {
+    document.body.classList.add("loaded");
+    return;
   }
 
-  function renderSpider() {
-    currentProgress += (targetProgress - currentProgress) * 0.12;
-
-    const reveal = Math.sin(currentProgress * Math.PI);
-
-    const holeScale = 0.84 + reveal * 0.25;
-    const holeY = 48 - reveal * 38;
-    const holeOpacity = 0.14 + reveal * 0.66;
-
-    const spiderY = 78 - reveal * 34;
-    const spiderScale = 1.02 + reveal * 0.14;
-    const spiderRotate = (currentProgress - 0.5) * 5;
-
-    hole.style.transform = `
-      translateY(${holeY}px)
-      scale(${holeScale})
-    `;
-
-    hole.style.opacity = holeOpacity;
-    hole.style.filter = `blur(${(1 - reveal) * 1.35}px)`;
-
-    spider.style.transform = `
-      translateY(${spiderY}%)
-      scale(${spiderScale})
-      rotate(${spiderRotate}deg)
-    `;
-
-    spider.style.opacity = 0.32 + reveal * 0.62;
-
-    if (reveal > 0.18) {
-      hole.classList.add("is-visible");
-    } else {
-      hole.classList.remove("is-visible");
-    }
-
-    if (Math.abs(targetProgress - currentProgress) > 0.002) {
-      requestAnimationFrame(renderSpider);
-    } else {
-      ticking = false;
-    }
-  }
-
-  function requestRender() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(renderSpider);
-    }
-  }
-
-  window.addEventListener("scroll", () => {
-    calculateProgress();
-    requestRender();
-  }, { passive: true });
-
-  window.addEventListener("resize", () => {
-    calculateProgress();
-    requestRender();
+  window.addEventListener("load", () => {
+    setTimeout(() => {
+      document.body.classList.add("loaded");
+    }, 650);
   });
-
-  calculateProgress();
-  requestRender();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -315,5 +242,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setupWheyHeroEffect();
 
-  setupSpiderRevealEffect();
+  setupZoryLoader();
 });
